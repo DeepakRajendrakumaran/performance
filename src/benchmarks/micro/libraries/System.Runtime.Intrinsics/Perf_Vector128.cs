@@ -16,345 +16,134 @@ namespace System.Runtime.Intrinsics.Tests
         private static readonly Vector128<ulong> _vectorULong = Vector128.Create((ulong)1, 2);
         private static readonly Vector128<int> _vectorInt = Vector128.Create(1, 2, 3, 4);
         private static readonly Vector128<uint> _vectorUInt = Vector128.Create((uint)1, 2, 3, 4);
+        private static readonly Vector128<short> _vectorShort = Vector128.Create(1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector128<ushort> _vectorUShort = Vector128.Create((ushort)1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector128<sbyte> _vectorSByte = Vector128.Create((sbyte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector128<byte> _vectorByte = Vector128.Create((byte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
         
         [Benchmark]
-        public Vector128<double> FloorDoubleBenchmark() => Vector128.Floor(_vectorDouble);
+        public double DoubleSumBenchmark128() => Vector128.Sum(_vectorDouble);
 
         [Benchmark]
-        public Vector128<float> FloorFloatBenchmark() => Vector128.Floor(_vectorFloat);
+        public float FloatSumBenchmark128() => Vector128.Sum(_vectorFloat);
 
         [Benchmark]
-        public Vector128<double> CeilingDoubleBenchmark() => Vector128.Ceiling(_vectorDouble);
+        public int IntSumBenchmark128() => Vector128.Sum(_vectorInt);
 
         [Benchmark]
-        public Vector128<float> CeilingFloatBenchmark() => Vector128.Ceiling(_vectorFloat);
+        public long LongSumBenchmark128() => Vector128.Sum(_vectorLong);
 
         [Benchmark]
-        public Vector128<double> ConvertLongToDoubleBenchmark() => Vector128.ConvertToDouble(_vectorLong);
-
-        [Benchmark]
-        public Vector128<double> ConvertULongToDoubleBenchmark() => Vector128.ConvertToDouble(_vectorULong);
-
-        [Benchmark]
-        public Vector128<int> ConvertFloatToIntBenchmark() => Vector128.ConvertToInt32(_vectorFloat);
-
-        [Benchmark]
-        public Vector128<long> ConvertDoubleToLongBenchmark() => Vector128.ConvertToInt64(_vectorDouble);
-
-        [Benchmark]
-        public Vector128<float> ConvertIntToFloatBenchmark() => Vector128.ConvertToSingle(_vectorInt);
-
-        [Benchmark]
-        public Vector128<float> ConvertUIntToFloatBenchmark() => Vector128.ConvertToSingle(_vectorUInt);
-
-        [Benchmark]
-        public Vector128<uint> ConvertFloatToUIntBenchmark() => Vector128.ConvertToUInt32(_vectorFloat);
+        public uint UIntSumBenchmark128() => Vector128.Sum(_vectorUInt);
         
         [Benchmark]
-        public Vector128<ulong> ConvertDoubleToULongBenchmark() => Vector128.ConvertToUInt64(_vectorDouble);
+        public ulong ULongSumBenchmark128() => Vector128.Sum(_vectorULong);
+
+        [Benchmark]
+        public ushort UShortSumBenchmark128() => Vector128.Sum(_vectorUShort);
+        
+        [Benchmark]
+        public short ShortSumBenchmark128() => Vector128.Sum(_vectorShort);
+
+        [Benchmark]
+        public sbyte SByteSumBenchmark128() => Vector128.Sum(_vectorSByte);
+        
+        [Benchmark]
+        public byte ByteSumBenchmark128() => Vector128.Sum(_vectorByte);
     }
 
     [BenchmarkCategory(Categories.Libraries, Categories.SIMD, Categories.JIT)]
-    public class Perf_Vector128Float
+    public class Perf_Vector256
     {
-        private static readonly Vector128<float> Value1 = Vector128<float>.AllBitsSet;
-        private static readonly Vector128<float> Value2 = Vector128<float>.AllBitsSet + Vector128<float>.AllBitsSet;
-        private static readonly Vector128<float> Value3 = Vector128<float>.AllBitsSet + Vector128<float>.AllBitsSet + Vector128<float>.AllBitsSet;
+        private static readonly Vector256<double> _vectorDouble = Vector256.Create(1.0, 2.0, 1.0, 2.0);
+        private static readonly Vector256<float> _vectorFloat = Vector256.Create(1.0F, 2.0F, 3.0F, 4.0F, 1.0F, 2.0F, 3.0F, 4.0F);
+        private static readonly Vector256<long> _vectorLong = Vector256.Create(1, 2, 1, 2);
+        private static readonly Vector256<ulong> _vectorULong = Vector256.Create((ulong)1, 2, 1, 2);
+        private static readonly Vector256<int> _vectorInt = Vector256.Create(1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector256<uint> _vectorUInt = Vector256.Create((uint)1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector256<short> _vectorShort = Vector256.Create(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector256<ushort> _vectorUShort = Vector256.Create((ushort)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector256<sbyte> _vectorSByte = Vector256.Create((sbyte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector256<byte> _vectorByte = Vector256.Create((byte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        
+        [Benchmark]
+        public double DoubleSumBenchmark256() => Vector256.Sum(_vectorDouble);
 
         [Benchmark]
-        public int CountBenchmark() => Vector128<float>.Count;
+        public float FloatSumBenchmark256() => Vector256.Sum(_vectorFloat);
 
         [Benchmark]
-        public Vector128<float> AllBitsSetBenchmark() => Vector128<float>.AllBitsSet;
+        public int IntSumBenchmark256() => Vector256.Sum(_vectorInt);
 
         [Benchmark]
-        public Vector128<float> ZeroBenchmark() => Vector128<float>.Zero;
+        public long LongSumBenchmark256() => Vector256.Sum(_vectorLong);
 
         [Benchmark]
-        public bool EqualsBenchmark() => Value1.Equals(Value2);
+        public uint UIntSumBenchmark256() => Vector256.Sum(_vectorUInt);
+        
+        [Benchmark]
+        public ulong ULongSumBenchmark256() => Vector256.Sum(_vectorULong);
 
         [Benchmark]
-        public int GetHashCodeBenchmark() => Value1.GetHashCode();
+        public ushort UShortSumBenchmark256() => Vector256.Sum(_vectorUShort);
+        
+        [Benchmark]
+        public short ShortSumBenchmark256() => Vector256.Sum(_vectorShort);
 
         [Benchmark]
-        public Vector128<float> AddOperatorBenchmark() => Value1 + Value2;
-
+        public sbyte SByteSumBenchmark256() => Vector256.Sum(_vectorSByte);
+        
         [Benchmark]
-        public Vector128<float> BitwiseAndOperatorBenchmark() => Value1 & Value2;
-
-        [Benchmark]
-        public Vector128<float> BitwiseOrOperatorBenchmark() => Value1 | Value2;
-
-        [Benchmark]
-        public Vector128<float> DivisionOperatorBenchmark() => Value1 / Value2;
-
-        [Benchmark]
-        public bool EqualityOperatorBenchmark() => Value1 == Value2;
-
-        [Benchmark]
-        public Vector128<float> ExclusiveOrOperatorBenchmark() => Value1 ^ Value2;
-
-        [Benchmark]
-        public bool InequalityOperatorBenchmark() => Value1 != Value2;
-
-        [Benchmark]
-        public Vector128<float> MultiplyOperatorBenchmark() => Value1 * Value2;
-
-        [Benchmark]
-        public Vector128<float> OnesComplementOperatorBenchmark() => ~Value1;
-
-        [Benchmark]
-        public Vector128<float> SubtractionOperatorBenchmark() => Value1 - Value2;
-
-        [Benchmark]
-        public Vector128<float> UnaryNegateOperatorBenchmark() => -Value1;
-
-        [Benchmark]
-        public Vector128<float> AbsBenchmark() => Vector128.Abs(Value1);
-
-        [Benchmark]
-        public Vector128<float> AddBenchmark() => Vector128.Add(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> AndNotBenchmark() => Vector128.AndNot(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> BitwiseAndBenchmark() => Vector128.BitwiseAnd(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> BitwiseOrBenchmark() => Vector128.BitwiseOr(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> ConditionalSelectBenchmark() => Vector128.ConditionalSelect(Value1, Value2, Value3);
-
-        [Benchmark]
-        public Vector128<float> DivideBenchmark() => Vector128.Divide(Value1, Value2);
-
-        [Benchmark]
-        public float DotBenchmark() => Vector128.Dot(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> EqualsStaticBenchmark() => Vector128.Equals(Value1, Value2);
-
-        [Benchmark]
-        public bool EqualsAllBenchmark() => Vector128.EqualsAll(Value1, Value2);
-
-        [Benchmark]
-        public bool EqualsAnyBenchmark() => Vector128.EqualsAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> GreaterThanBenchmark() => Vector128.GreaterThan(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanAllBenchmark() => Vector128.GreaterThanAll(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanAnyBenchmark() => Vector128.GreaterThanAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> GreaterThanOrEqualBenchmark() => Vector128.GreaterThanOrEqual(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanOrEqualAllBenchmark() => Vector128.GreaterThanOrEqualAll(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanOrEqualAnyBenchmark() => Vector128.GreaterThanOrEqualAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> LessThanBenchmark() => Vector128.LessThan(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanAllBenchmark() => Vector128.LessThanAll(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanAnyBenchmark() => Vector128.LessThanAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> LessThanOrEqualBenchmark() => Vector128.LessThanOrEqual(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanOrEqualAllBenchmark() => Vector128.LessThanOrEqualAll(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanOrEqualAnyBenchmark() => Vector128.LessThanOrEqualAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> MaxBenchmark() => Vector128.Max(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> MinBenchmark() => Vector128.Min(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> MultiplyBenchmark() => Vector128.Multiply(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<float> NegateBenchmark() => Vector128.Negate(Value1);
-
-        [Benchmark]
-        public Vector128<float> OnesComplementBenchmark() => Vector128.OnesComplement(Value1);
-
-        [Benchmark]
-        public Vector128<float> SquareRootBenchmark() => Vector128.Sqrt(Value1);
-
-        [Benchmark]
-        public Vector128<float> SubtractBenchmark() => Vector128.Subtract(Value1, Value2);
-
-        [Benchmark]
-        public float SumBenchmark() =>  Vector128.Sum(Value1);
-
-        [Benchmark]
-        public Vector128<float> XorBenchmark() => Vector128.Xor(Value1, Value2);
+        public byte ByteSumBenchmark256() => Vector256.Sum(_vectorByte);
     }
+
+
+
 
     [BenchmarkCategory(Categories.Libraries, Categories.SIMD, Categories.JIT)]
-    public class Perf_Vector128Int
+    public class Perf_Vector512
     {
-        private static readonly Vector128<int> Value1 = Vector128<int>.AllBitsSet;
-        private static readonly Vector128<int> Value2 = Vector128<int>.AllBitsSet + Vector128<int>.AllBitsSet;
-        private static readonly Vector128<int> Value3 = Vector128<int>.AllBitsSet + Vector128<int>.AllBitsSet + Vector128<int>.AllBitsSet;
+        private static readonly Vector512<double> _vectorDouble = Vector512.Create(1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0);
+        private static readonly Vector512<float> _vectorFloat = Vector512.Create(1.0F, 2.0F, 3.0F, 4.0F, 1.0F, 2.0F, 3.0F, 4.0F, 1.0F, 2.0F, 3.0F, 4.0F, 1.0F, 2.0F, 3.0F, 4.0F);
+        private static readonly Vector512<long> _vectorLong = Vector512.Create(1, 2, 1, 2, 1, 2, 1, 2);
+        private static readonly Vector512<ulong> _vectorULong = Vector512.Create((ulong)1, 2, 1, 2, 1, 2, 1, 2);
+        private static readonly Vector512<int> _vectorInt = Vector512.Create(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector512<uint> _vectorUInt = Vector512.Create((uint)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector512<short> _vectorShort = Vector512.Create(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector512<ushort> _vectorUShort = Vector512.Create((ushort)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector512<sbyte> _vectorSByte = Vector512.Create((sbyte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        private static readonly Vector512<byte> _vectorByte = Vector512.Create((byte)1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+        
+        [Benchmark]
+        public double DoubleSumBenchmark512() => Vector512.Sum(_vectorDouble);
 
         [Benchmark]
-        public int CountBenchmark() => Vector128<int>.Count;
+        public float FloatSumBenchmark512() => Vector512.Sum(_vectorFloat);
 
         [Benchmark]
-        public Vector128<int> AllBitsSetBenchmark() => Vector128<int>.AllBitsSet;
+        public int IntSumBenchmark512() => Vector512.Sum(_vectorInt);
 
         [Benchmark]
-        public Vector128<int> ZeroBenchmark() => Vector128<int>.Zero;
+        public long LongSumBenchmark512() => Vector512.Sum(_vectorLong);
 
         [Benchmark]
-        public bool EqualsBenchmark() => Value1.Equals(Value2);
+        public uint UIntSumBenchmark512() => Vector512.Sum(_vectorUInt);
+        
+        [Benchmark]
+        public ulong ULongSumBenchmark512() => Vector512.Sum(_vectorULong);
 
         [Benchmark]
-        public int GetHashCodeBenchmark() => Value1.GetHashCode();
+        public ushort UShortSumBenchmark512() => Vector512.Sum(_vectorUShort);
+        
+        [Benchmark]
+        public short ShortSumBenchmark512() => Vector512.Sum(_vectorShort);
 
         [Benchmark]
-        public Vector128<int> AddOperatorBenchmark() => Value1 + Value2;
-
+        public sbyte SByteSumBenchmark512() => Vector512.Sum(_vectorSByte);
+        
         [Benchmark]
-        public Vector128<int> BitwiseAndOperatorBenchmark() => Value1 & Value2;
-
-        [Benchmark]
-        public Vector128<int> BitwiseOrOperatorBenchmark() => Value1 | Value2;
-
-        [Benchmark]
-        public Vector128<int> DivisionOperatorBenchmark() => Value1 / Value2;
-
-        [Benchmark]
-        public bool EqualityOperatorBenchmark() => Value1 == Value2;
-
-        [Benchmark]
-        public Vector128<int> ExclusiveOrOperatorBenchmark() => Value1 ^ Value2;
-
-        [Benchmark]
-        public bool InequalityOperatorBenchmark() => Value1 != Value2;
-
-        [Benchmark]
-        public Vector128<int> MultiplyOperatorBenchmark() => Value1 * Value2;
-
-        [Benchmark]
-        public Vector128<int> OnesComplementOperatorBenchmark() => ~Value1;
-
-        [Benchmark]
-        public Vector128<int> SubtractionOperatorBenchmark() => Value1 - Value2;
-
-        [Benchmark]
-        public Vector128<int> UnaryNegateOperatorBenchmark() => -Value1;
-
-        [Benchmark]
-        public Vector128<int> AbsBenchmark() => Vector128.Abs(Value1);
-
-        [Benchmark]
-        public Vector128<int> AddBenchmark() => Vector128.Add(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> AndNotBenchmark() => Vector128.AndNot(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> BitwiseAndBenchmark() => Vector128.BitwiseAnd(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> BitwiseOrBenchmark() => Vector128.BitwiseOr(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> ConditionalSelectBenchmark() => Vector128.ConditionalSelect(Value1, Value2, Value3);
-
-        [Benchmark]
-        public Vector128<int> DivideBenchmark() => Vector128.Divide(Value1, Value2);
-
-        [Benchmark]
-        public int DotBenchmark() => Vector128.Dot(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> EqualsStaticBenchmark() => Vector128.Equals(Value1, Value2);
-
-        [Benchmark]
-        public bool EqualsAllBenchmark() => Vector128.EqualsAll(Value1, Value2);
-
-        [Benchmark]
-        public bool EqualsAnyBenchmark() => Vector128.EqualsAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> GreaterThanBenchmark() => Vector128.GreaterThan(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanAllBenchmark() => Vector128.GreaterThanAll(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanAnyBenchmark() => Vector128.GreaterThanAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> GreaterThanOrEqualBenchmark() => Vector128.GreaterThanOrEqual(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanOrEqualAllBenchmark() => Vector128.GreaterThanOrEqualAll(Value1, Value2);
-
-        [Benchmark]
-        public bool GreaterThanOrEqualAnyBenchmark() => Vector128.GreaterThanOrEqualAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> LessThanBenchmark() => Vector128.LessThan(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanAllBenchmark() => Vector128.LessThanAll(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanAnyBenchmark() => Vector128.LessThanAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> LessThanOrEqualBenchmark() => Vector128.LessThanOrEqual(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanOrEqualAllBenchmark() => Vector128.LessThanOrEqualAll(Value1, Value2);
-
-        [Benchmark]
-        public bool LessThanOrEqualAnyBenchmark() => Vector128.LessThanOrEqualAny(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> MaxBenchmark() => Vector128.Max(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> MinBenchmark() => Vector128.Min(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> MultiplyBenchmark() => Vector128.Multiply(Value1, Value2);
-
-        [Benchmark]
-        public Vector128<int> NegateBenchmark() => Vector128.Negate(Value1);
-
-        [Benchmark]
-        public Vector128<int> OnesComplementBenchmark() => Vector128.OnesComplement(Value1);
-
-        [Benchmark]
-        public Vector128<int> SquareRootBenchmark() => Vector128.Sqrt(Value1);
-
-        [Benchmark]
-        public Vector128<int> SubtractBenchmark() => Vector128.Subtract(Value1, Value2);
-
-        [Benchmark]
-        public int SumBenchmark() =>  Vector128.Sum(Value1);
-
-        [Benchmark]
-        public Vector128<int> XorBenchmark() => Vector128.Xor(Value1, Value2);
+        public byte ByteSumBenchmark512() => Vector512.Sum(_vectorByte);
     }
+
+
 }
